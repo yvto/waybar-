@@ -1,0 +1,125 @@
+{
+	"layer": "top",
+	"modules-left": ["hyprland/workspaces"],
+	"modules-center": ["clock"],
+	"modules-right": ["pulseaudio", "pulseaudio/slider", "network", "bluetooth", "battery"],
+	"hyprland/window": {
+		"max-length": 50
+	},
+	"battery": {
+		"interval": 60,
+		"format": "{capacity}% {icon}",
+		"format-icons": {
+			"default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+			"charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
+		}
+	},
+	"bluetooth": {
+		"format": "",
+		"format-disabled": "", // an empty format will hide the module
+		"format-connected": " {num_connections}",
+		"tooltip-format": "{controller_alias}\t{controller_address}",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}"
+	},
+	"network": {
+	"format": "",
+	"format-wifi": "",
+	"format-ethernet": "󰊗",
+	"format-disconnected": "󰤭", //An empty format will hide the module.
+	"tooltip-format": "{ifname} via {gwaddr} 󰊗",
+	"tooltip-format-wifi": "{essid} ({signalStrength}%) ",
+	"tooltip-format-ethernet": "{ifname} ",
+	"tooltip-format-disconnected": "Disconnected 󰤭",
+	"max-length": 50
+	},
+	"clock": {
+		"format": "{:%d %b %Y | %I:%M %p}",
+		"tooltip-format": "<tt><small>{calendar}</small></tt>",
+		"calendar": {
+			"format": {
+				"today": "<span color='#e1c0fa'><b>{}</b></span>"
+			}
+		}
+	},
+	"pulseaudio": {
+		"format": "{volume}% {icon}",
+		"format-muted": "",
+		"format-icons": {
+			"default": ["", ""]
+		},
+		"scroll-step": 1,
+		"ignored-sinks": ["Easy Effects Sink"]
+	},
+	"pulseaudio/slider": {
+		"min": 0,
+		"max": 100,
+		"orientation": "horizontal"
+		}
+	}
+}
+❯ cat style.css
+@define-color highlight #e1c0fa;
+
+* {
+    font-family: JetBrainsMono Nerd Font Propo;
+    font-size: 13px;
+}
+
+window#waybar {
+    background-color: rgba(24, 24, 27, 1);
+    color: #ffffff;
+}
+
+#workspaces button {
+	padding: 0.5px;
+	margin: 2px 0px 2px 5px;
+	background: transparent;
+	border-radius: 2px;
+	color: White;
+}
+#workspaces button.active {
+	background: @highlight;
+	color: black;
+	font-weight: 700;
+}
+#workspaces button.urgent {
+	background: rgba(227, 81, 73, 1);
+}
+
+#battery,
+#bluetooth,
+#network {
+	border-radius: 2px;
+	padding: 5px 8px;
+	margin: 5px 10px 5px 0px;
+	background: rgba(39, 39, 42, 1);
+}
+
+
+#pulseaudio-slider slider {
+  all: unset;
+  min-height: 0;
+  min-width: 0;
+  opacity: 0;
+  background-image: none;
+  border: none;
+  box-shadow: none;
+}
+
+#pulseaudio-slider trough {
+  min-height: 6px;
+  min-width: 50px;
+  border-radius: 5px;
+  background: black;
+}
+
+#pulseaudio-slider highlight {
+  min-width: 0px;
+  border-radius: 5px;
+  border: black;
+  background: @highlight;
+}
+tooltip label {
+	color: White;
+}
